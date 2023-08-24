@@ -14,7 +14,7 @@
     </div>
 
     <div class="card card-body bg-light p-4">
-        <form action="{{ route('task.store') }}" method="POST">
+        <form action="{{ route('task.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
@@ -34,6 +34,13 @@
                         <option value="{{ $status['value'] }}">{{ $status['label'] }}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="file" class="form-label">Attachment</label>
+                <input type="file" class="form-control @error('file') is-invalid @enderror" id="file" name="file">
+                @error('file')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <a href="{{ route('index') }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i> Cancel</a>

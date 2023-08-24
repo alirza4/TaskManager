@@ -72,7 +72,8 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required'
+            'title' => 'required',
+            'file' => 'nullable|mimes:jpeg,png,pdf|max:2048'
         ]);
 
         $task = new Task();
@@ -81,6 +82,12 @@ class TaskController extends Controller
         $task->description = $request->description;
         $task->status = $request->status;
         $task->save();
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filePath = $file->store('task_files');
+            $task->file = $filePath;
+            $task->save();
+        }
         return redirect()->route('index');
     }
 
@@ -149,13 +156,20 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $request->validate([
-            'title' => 'required'
+            'title' => 'required',
+            'file' => 'nullable|mimes:jpeg,png,pdf|max:2048'
         ]);
-
         $task->title = $request->title;
         $task->user_id = auth()->user()->id;
         $task->description = $request->description;
         $task->status = $request->status;
+        $task->save();
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filePath = $file->store('task_files');
+            $task->file = $filePath;
+            $task->save();
+        }
         $task->save();
         return redirect()->route('index');
     }

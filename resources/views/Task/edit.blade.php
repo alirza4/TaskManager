@@ -40,6 +40,22 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="file" class="form-label">Current File</label>
+                @if ($task->file)
+                    <a class="badge rounded-pill bg-warning text-dark" href="{{ Storage::url($task->file) }}" >Download File</a>
+                @else
+                    No File Attached
+                @endif
+            </div>
+            <div class="mb-3">
+                <label for="file" class="form-label">Attachment</label>
+                <input type="file" class="form-control @error('file') is-invalid @enderror" id="file" name="file">
+                @error('file')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
 
             <a href="{{ route('index') }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i> Cancel</a>
 

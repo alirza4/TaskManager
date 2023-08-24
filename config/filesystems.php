@@ -30,6 +30,13 @@ return [
 
     'disks' => [
 
+        'task_files' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/task_files'), // adjust the path as needed
+            'url' => env('APP_URL').'/storage/task_files', // adjust the URL as needed
+            'visibility' => 'public',
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -39,9 +46,8 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
-            'throw' => false,
         ],
 
         's3' => [

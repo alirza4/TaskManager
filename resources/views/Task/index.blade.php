@@ -71,8 +71,12 @@
                             </span>
                         @endif
 
-
                         <small>Last Updated - {{ $task->updated_at->diffForHumans() }} </small>
+                            @if ($task->file)
+                                <a class="badge rounded-pill bg-warning text-dark" href="{{ Storage::url($task->file) }}" >Download File</a>
+                            @else
+                                No File Attached
+                            @endif
                     </div>
                     <div class="float-end">
                         <a href="{{ route('task.edit', $task->id) }}" class="btn btn-success">
