@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->enum('status', ['Backlog', 'Inprogress', 'Todo', 'Qa', 'Test', 'Done', 'Rejected'])->default('Todo');
+            $table->enum('status', ['Backlog', 'InProgress', 'Todo', 'Qa', 'Test', 'Done', 'Rejected'])->default('Todo');
             $table->timestamps();
         });
     }
