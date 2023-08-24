@@ -15,7 +15,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::orderBy('id', 'desc')->get();
-        return view('index', compact('tasks'));
+        return view('Task.index', compact('tasks'));
     }
 
     /**
@@ -55,7 +55,7 @@ class TaskController extends Controller
                 'value' => 'Rejected',
             ]
         ];
-        return view('create', compact('statuses'));
+        return view('Task.create', compact('statuses'));
     }
 
     /**
@@ -129,7 +129,7 @@ class TaskController extends Controller
             ]
 
         ];
-        return view('edit', compact('statuses', 'task'));
+        return view('Task.edit', compact('statuses', 'task'));
     }
 
     /**
