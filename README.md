@@ -1,5 +1,4 @@
 its a task manager that you can handle and manage your tasks
-![create task](https://github.com/alirza4/TaskManager/assets/78573333/c04cf458-4aee-4eed-9a2d-68f7a7f60016)
 login page:
 ![login](https://github.com/alirza4/TaskManager/assets/78573333/49739e00-1c86-471e-85b2-961cc96fad7a)
 register page:
