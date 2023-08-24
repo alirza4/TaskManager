@@ -27,12 +27,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/home', [TaskController::class, 'index'])->name('index');
-Route::resource('task', TaskController::class);
-
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/home', [TaskController::class, 'index'])->middleware('auth')->name('index');
+Route::resource('task', TaskController::class)->middleware('auth');
 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');

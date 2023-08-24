@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('main-content')
     <div>
@@ -24,13 +24,15 @@
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea type="text" class="form-control" id="description" name="description" rows="5">{{ $task->description }}</textarea>
+                <textarea type="text" class="form-control" id="description" name="description"
+                          rows="5">{{ $task->description }}</textarea>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Status</label>
                 <select name="status" id="status" class="form-control">
                     @foreach ($statuses as $status)
-                        <option value="{{ $status['value'] }}" {{  $task->status === $status['value'] ? 'selected' : '' }}>{{ $status['label'] }}</option>
+                        <option
+                                value="{{ $status['value'] }}" {{  $task->status === $status['value'] ? 'selected' : '' }}>{{ $status['label'] }}</option>
                     @endforeach
                 </select>
             </div>
