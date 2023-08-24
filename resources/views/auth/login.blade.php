@@ -9,6 +9,12 @@
                         <div class="card-header bg-warning">Login</div>
                         <div class="card-body">
 
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
                             <form action="{{ route('login.post') }}" method="POST">
                                 @csrf
                                 <div class="form-group row">

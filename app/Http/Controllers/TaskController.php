@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -15,6 +16,10 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::orderBy('id', 'desc')->get();
+
+        foreach ($tasks as $task) {
+            $task->author = User::whereIn('id', $task)->pluck('email')->implode(', ');
+        }
         return view('Task.index', compact('tasks'));
     }
 
@@ -72,6 +77,7 @@ class TaskController extends Controller
 
         $task = new Task();
         $task->title = $request->title;
+        $task->user_id = auth()->user()->id;
         $task->description = $request->description;
         $task->status = $request->status;
         $task->save();
@@ -147,6 +153,7 @@ class TaskController extends Controller
         ]);
 
         $task->title = $request->title;
+        $task->user_id = auth()->user()->id;
         $task->description = $request->description;
         $task->status = $request->status;
         $task->save();

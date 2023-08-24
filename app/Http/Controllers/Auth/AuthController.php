@@ -34,7 +34,7 @@ class AuthController extends Controller
     /**
      * Write code on Method
      *
-     * @return response()
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector()
      */
     public function postLogin(Request $request)
     {
@@ -46,10 +46,10 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended('/home')
-                ->withSuccess('You have Successfully loggedin');
+                ->withSuccess('Successfully loggedIn');
         }
 
-        return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+        return redirect("login")->with('error', 'email or password incorrect!');
     }
 
     /**
