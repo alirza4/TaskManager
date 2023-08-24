@@ -22,9 +22,13 @@
                     {{ $task->title }}
                 @endif
 
-                <span class="badge rounded-pill bg-warning text-dark">
+                <span class="badge  bg-warning text-dark">
                     {{ $task->created_at->diffForHumans() }}
                 </span>
+                    <span class="badge  text-dark">
+                    {{ $task->author }}
+                </span>
+
             </h5>
 
             <div class="card-body">

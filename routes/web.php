@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/home', [TaskController::class, 'index'])->middleware('auth')->name('index');
 Route::resource('task', TaskController::class)->middleware('auth');
+Route::get('/', function () {return redirect('/login');});
 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
